@@ -2,7 +2,7 @@
   "name": "native-kor2eng",
   "version": "0.1.0",
   "private": true,
-  "homepage": "nativekor2eng.github.io",
+  "homepage": "5h5ong.github.io",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.5",
