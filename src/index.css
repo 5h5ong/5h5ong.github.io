@@ -1,0 +1,8 @@
+/* parent container로 margin, padding이 튀어나오는 대참사를 막기 위해서 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f0edcc;
+}

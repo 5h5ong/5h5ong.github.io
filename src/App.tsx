@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./App.css";
 import useInput from "./hooks/useInput";
 import korArrayToEng from "./libs/korArrayToEng";
 import separateKor from "./libs/separateKor";
@@ -14,13 +15,16 @@ function App() {
   }, [korInput.value]);
 
   return (
-    <div>
-      <input
-        placeholder="변환할 문장을 입력해주세요."
-        value={korInput.value}
-        onChange={korInput.onChange}
-      />
-      <div>{convertedText}</div>
+    <div className="container">
+      <div className="input-container">
+        <input
+          className="input"
+          placeholder="변환할 문장을 입력해주세요."
+          value={korInput.value}
+          onChange={korInput.onChange}
+        />
+      </div>
+      <div className="text-result">{convertedText}</div>
     </div>
   );
 }

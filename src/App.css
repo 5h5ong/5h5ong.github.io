@@ -1,0 +1,35 @@
+.input {
+  width: 100%;
+  padding: 30px;
+  font-size: 30pt;
+  text-align: center;
+  background-color: #02343f;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  color: #f0edcc;
+}
+
+.input-container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.text-container {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.container {
+  margin-top: 150px;
+}
+
+.text-result {
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+  padding: 30px;
+  color: #02343f;
+  font-size: 25pt;
+}
