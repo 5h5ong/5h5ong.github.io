@@ -3,6 +3,7 @@ import useInput from "./hooks/useInput";
 
 function App() {
   const korInput = useInput();
+
   return (
     <div>
       <input
