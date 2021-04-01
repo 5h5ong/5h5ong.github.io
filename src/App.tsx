@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import useInput from "./hooks/useInput";
+import copyToClipboard from "./libs/copyToClipboard";
 import korArrayToEng from "./libs/korArrayToEng";
 import separateKor from "./libs/separateKor";
 
@@ -14,6 +15,11 @@ function App() {
     setConvertedText(converted);
   }, [korInput.value]);
 
+  // 클릭 시 만들어진 영어 텍스트를 클립보드로 복사
+  const engTextOnClick = () => {
+    copyToClipboard(convertedText);
+  };
+
   return (
     <div className="container">
       <div className="input-container">
@@ -24,7 +30,9 @@ function App() {
           onChange={korInput.onChange}
         />
       </div>
-      <div className="text-result">{convertedText}</div>
+      <div className="text-result" onClick={() => engTextOnClick()}>
+        {convertedText}
+      </div>
     </div>
   );
 }
