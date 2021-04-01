@@ -24,15 +24,34 @@
 }
 
 .container {
+  /* 상단에서 약간 간격을 줌 */
   margin-top: 150px;
+  /* child element를 모두 중앙정렬 시킴 */
+  text-align: center;
 }
 
 .text-result {
-  width: 100%;
+  /* 안의 text의 길이에 따라 width가 정해지도록 하기 위해서 */
+  display: inline-block;
+  /* ripple effect가 밖으로 튀어나오지 않도록 */
+  overflow: hidden;
+  /* element가 parent에서 벗어나지 못하게 */
+  position: relative;
+  /* test */
+  border: solid black;
   font-family: "Raleway", sans-serif;
-  text-align: center;
   margin-top: 50px;
   padding: 30px;
   color: #02343f;
   font-size: 25pt;
+}
+
+.test-dot {
+  z-index: 5;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  /* 원으로 만들기 위해서 */
+  border-radius: 9999px;
+  background-color: #02343f;
 }
