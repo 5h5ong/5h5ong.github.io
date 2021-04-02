@@ -8,16 +8,32 @@ import separateKor from "./libs/separateKor";
 function App() {
   const korInput = useInput();
   const [convertedText, setConvertedText] = useState("");
+  // ripple effect 생성 제어
+  const [isRippling, setIsRippling] = useState<boolean>(false);
   // result div의 ref(ripple effect를 위해 사용됨)
   const resultDivRef = useRef<HTMLDivElement>(null);
   // result div 클릭 좌표 저장(ripple effect를 위해 사용됨)
-  const [coords, setCoords] = useState<{ x: number; y: number }>();
+  const [coords, setCoords] = useState<{ x: number; y: number }>({
+    x: -1,
+    y: -1,
+  });
 
   // 입력된 한글 문장을 분리
   useEffect(() => {
     const converted = korArrayToEng(separateKor(korInput.value));
     setConvertedText(converted);
   }, [korInput.value]);
+  // ripple effect 제어
+  useEffect(() => {
+    if (coords.x !== -1 && coords.y !== -1) {
+      setIsRippling(true);
+      setTimeout(() => {
+        setIsRippling(false);
+      }, 1000);
+    } else {
+      setIsRippling(false);
+    }
+  }, [coords]);
 
   // 클릭 시 만들어진 영어 텍스트를 클립보드로 복사
   const engTextOnClick = () => {
@@ -54,22 +70,17 @@ function App() {
           getCoords(e);
         }}
       >
-        {coords && coords.x && (
+        {isRippling && (
           <div
             className="test-dot"
             style={{
-              left: coords.x - 50,
-              top: coords.y - 50,
+              // ripple effect의 원 반지름을 빼줘야 클릭된 위치에서 표시됨
+              left: coords.x - 35,
+              top: coords.y - 35,
             }}
           />
         )}
-
         {convertedText}
-      </div>
-      <div>
-        <div>click coords</div>
-        <div>{coords?.x}</div>
-        <div>{coords?.y}</div>
       </div>
     </div>
   );
