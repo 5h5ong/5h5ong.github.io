@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
+import PopupNotification from "./component/PopupNotification";
 import useInput from "./hooks/useInput";
 import copyToClipboard from "./libs/copyToClipboard";
 import korArrayToEng from "./libs/korArrayToEng";
@@ -12,6 +13,10 @@ function App() {
   const [isRippling, setIsRippling] = useState<boolean>(false);
   // notification 표시 제어
   const [displayNotification, setDisplayNotification] = useState<boolean>(
+    false
+  );
+  // popup notification 표시 제어
+  const [displayPopupNotification, setDisplayPopupNotification] = useState(
     false
   );
   // result div의 ref(ripple effect를 위해 사용됨)
@@ -50,6 +55,12 @@ function App() {
   // 클릭 시 만들어진 영어 텍스트를 클립보드로 복사
   const engTextOnClick = () => {
     copyToClipboard(convertedText);
+
+    // 복사됨을 알려주는 팝업 .5s 동안 띄움
+    setDisplayPopupNotification(true);
+    setTimeout(() => {
+      setDisplayPopupNotification(false);
+    }, 1000);
   };
 
   // result div의 좌표와 클릭된 좌표를 얻어 ripple effect가
@@ -66,6 +77,9 @@ function App() {
 
   return (
     <div className="container">
+      {displayPopupNotification && (
+        <PopupNotification displayText="😎 복사됨!" />
+      )}
       {/* input */}
       <div className="input-container">
         <input
