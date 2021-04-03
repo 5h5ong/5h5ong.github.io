@@ -30,6 +30,7 @@ export const korToEngDictionary: { [index: string]: string } = {
   ㅡ: "m",
   ㅃ: "Q",
   ㅉ: "W",
+  ㄸ: "E",
   ㄲ: "R",
   ㅆ: "T",
   ㅒ: "O",
