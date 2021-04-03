@@ -90,27 +90,45 @@ function App() {
         />
       </div>
       {/* text-result */}
+      {/* 텍스트가 없거나 isRippling이 true일 때 클릭 이벤트를 없앤 */}
+      {/* .text-result를 보여줘 ripple effect가 이상하게 보이지 않게 함 */}
       <div className="text-result-wrapper">
-        <div
-          className="text-result"
-          ref={resultDivRef}
-          onClick={(e) => {
-            engTextOnClick();
-            getCoords(e);
-          }}
-        >
-          {isRippling && (
-            <div
-              className="test-dot"
-              style={{
-                // ripple effect의 원 반지름을 빼줘야 클릭된 위치에서 표시됨
-                left: coords.x - 35,
-                top: coords.y - 35,
-              }}
-            />
-          )}
-          {convertedText}
-        </div>
+        {!korInput.value || isRippling ? (
+          <div className="text-result">
+            {isRippling && (
+              <div
+                className="test-dot"
+                style={{
+                  // ripple effect의 원 반지름을 빼줘야 클릭된 위치에서 표시됨
+                  left: coords.x - 35,
+                  top: coords.y - 35,
+                }}
+              />
+            )}
+            {convertedText}
+          </div>
+        ) : (
+          <div
+            className="text-result"
+            ref={resultDivRef}
+            onClick={(e) => {
+              engTextOnClick();
+              getCoords(e);
+            }}
+          >
+            {isRippling && (
+              <div
+                className="test-dot"
+                style={{
+                  // ripple effect의 원 반지름을 빼줘야 클릭된 위치에서 표시됨
+                  left: coords.x - 35,
+                  top: coords.y - 35,
+                }}
+              />
+            )}
+            {convertedText}
+          </div>
+        )}
         {/* notification */}
         {displayNotification && (
           <div className="notification">클릭해서 복사할 수 있어요!</div>
