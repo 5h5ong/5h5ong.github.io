@@ -10,6 +10,10 @@ function App() {
   const [convertedText, setConvertedText] = useState("");
   // ripple effect 생성 제어
   const [isRippling, setIsRippling] = useState<boolean>(false);
+  // notification 표시 제어
+  const [displayNotification, setDisplayNotification] = useState<boolean>(
+    false
+  );
   // result div의 ref(ripple effect를 위해 사용됨)
   const resultDivRef = useRef<HTMLDivElement>(null);
   // result div 클릭 좌표 저장(ripple effect를 위해 사용됨)
@@ -22,6 +26,14 @@ function App() {
   useEffect(() => {
     const converted = korArrayToEng(separateKor(korInput.value));
     setConvertedText(converted);
+  }, [korInput.value]);
+  // 인풋에 아무 것도 없다면 notification 표시 안함
+  useEffect(() => {
+    if (korInput.value) {
+      setDisplayNotification(true);
+    } else {
+      setDisplayNotification(false);
+    }
   }, [korInput.value]);
   // ripple effect 제어
   useEffect(() => {
@@ -54,6 +66,7 @@ function App() {
 
   return (
     <div className="container">
+      {/* input */}
       <div className="input-container">
         <input
           className="input"
@@ -62,25 +75,32 @@ function App() {
           onChange={korInput.onChange}
         />
       </div>
-      <div
-        className="text-result"
-        ref={resultDivRef}
-        onClick={(e) => {
-          engTextOnClick();
-          getCoords(e);
-        }}
-      >
-        {isRippling && (
-          <div
-            className="test-dot"
-            style={{
-              // ripple effect의 원 반지름을 빼줘야 클릭된 위치에서 표시됨
-              left: coords.x - 35,
-              top: coords.y - 35,
-            }}
-          />
+      {/* text-result */}
+      <div className="text-result-wrapper">
+        <div
+          className="text-result"
+          ref={resultDivRef}
+          onClick={(e) => {
+            engTextOnClick();
+            getCoords(e);
+          }}
+        >
+          {isRippling && (
+            <div
+              className="test-dot"
+              style={{
+                // ripple effect의 원 반지름을 빼줘야 클릭된 위치에서 표시됨
+                left: coords.x - 35,
+                top: coords.y - 35,
+              }}
+            />
+          )}
+          {convertedText}
+        </div>
+        {/* notification */}
+        {displayNotification && (
+          <div className="notification">클릭해서 복사할 수 있어요!</div>
         )}
-        {convertedText}
       </div>
     </div>
   );

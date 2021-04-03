@@ -30,6 +30,11 @@
   text-align: center;
 }
 
+/* notification이 viewport 상 left에 붙는 걸 막기 위해 */
+.text-result-wrapper {
+  display: inline-block;
+}
+
 .text-result {
   /* 안의 text의 길이에 따라 width가 정해지도록 하기 위해서 */
   display: inline-block;
@@ -42,6 +47,14 @@
   padding: 30px;
   color: #02343f;
   font-size: 25pt;
+}
+
+.notification {
+  /* 부드럽게 표시되게 */
+  animation: 0.5s text-fadein;
+  /* center가 아닌 left에 위치하게 하게 */
+  text-align: left;
+  color: #02343f;
 }
 
 .test-dot {
@@ -67,5 +80,14 @@
   100% {
     transform: scale(35);
     opacity: 0;
+  }
+}
+
+@keyframes text-fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
