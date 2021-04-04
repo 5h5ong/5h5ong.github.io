@@ -36,7 +36,6 @@
 }
 
 .text-result {
-  /* 안의 text의 길이에 따라 width가 정해지도록 하기 위해서 */
   display: inline-block;
   /* ripple effect가 밖으로 튀어나오지 않도록 */
   overflow: hidden;
@@ -54,6 +53,7 @@
   animation: 0.5s text-fadein;
   /* center가 아닌 left에 위치하게 하게 */
   text-align: left;
+  font-size: 10pt;
   color: #02343f;
 }
 
